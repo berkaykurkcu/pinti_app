@@ -3,6 +3,8 @@ import 'package:pinti_app/sepetim.dart';
 import 'package:pinti_app/urun.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'authentication.dart';
+
 
 class sayfa1 extends StatefulWidget {
   const sayfa1({Key? key}) : super(key: key);
@@ -55,6 +57,9 @@ class _sayfa1State extends State<sayfa1> {
                   child: SizedBox(
                     height: ekranGenisligi/7,
                     child: TextButton(
+                      child: Icon(
+                        Icons.shopping_bag,
+                      ),
                       style:TextButton.styleFrom(
                         primary: Colors.white,
                         backgroundColor: Colors.red,
@@ -62,13 +67,23 @@ class _sayfa1State extends State<sayfa1> {
                           borderRadius: BorderRadius.circular(0),
                         ),
                       ),
-                      child: Yazi("Go to My Cart", ekranGenisligi/25),
                       onPressed: (){
                         print("Sepete Gidildi!");
                         Navigator.push(context, MaterialPageRoute(builder: (context) => sepetim()));
                       },
                     ),
+
                   ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.exit_to_app,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    AuthService.signOut();
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),
