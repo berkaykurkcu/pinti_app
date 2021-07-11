@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1024317778958",
+    "project_id": "se380-project-8e6ce",
+    "storage_bucket": "se380-project-8e6ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024317778958:android:52f682fa7b63078149605f",
+        "android_client_info": {
+          "package_name": "com.example.pinti_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024317778958-6664hcpmd1rfppf3lncec4384qv2fuhn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pinti_app",
+            "certificate_hash": "f17caf70442e9a76d462188c0b3f5df0d2db9518"
+          }
+        },
+        {
+          "client_id": "1024317778958-95fqaa90d361qhrvds046o326g5sdecf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPNPc1NX-zgYVtMxbFBiwULcVrjS7qaOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024317778958-95fqaa90d361qhrvds046o326g5sdecf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
