@@ -4,6 +4,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_cart/flutter_cart.dart';
 import 'package:pinti_app/sayfa1.dart';
 
 class finishPage extends StatefulWidget {
@@ -16,6 +17,7 @@ class finishPage extends StatefulWidget {
 class _finishPageState extends State<finishPage> {
   double _rating = 5.0;
   String _currentAnimation = '5+';
+  var cart = FlutterCart();
 
   void _onChanged(double value){
         setState((){
@@ -65,9 +67,9 @@ class _finishPageState extends State<finishPage> {
                 style: Theme.of(context).textTheme.headline4,
               ),
               ElevatedButton(
-              child: Text("Siparişi Puanla!",style: TextStyle(fontSize: 25),),
+              child: Text("Rate your Experience!",style: TextStyle(fontSize: 25),),
               onPressed: (){
-                print("Puanınız $_rating");
+                print("Your rate: $_rating");
                 sleep(Duration(seconds:2));
                 Navigator.push(context, MaterialPageRoute(builder: (context) => sayfa1()));
 

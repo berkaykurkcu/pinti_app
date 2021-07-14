@@ -22,6 +22,7 @@ class RegisterPage extends StatelessWidget {
         title: Text(""),
       ),
       body: Center(
+
         child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(

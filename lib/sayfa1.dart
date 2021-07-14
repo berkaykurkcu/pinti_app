@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pinti_app/myProfile.dart';
 import 'package:pinti_app/sepetim.dart';
 import 'package:pinti_app/urun.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 import 'authentication.dart';
 
 
@@ -20,6 +21,9 @@ class _sayfa1State extends State<sayfa1> {
     var ekranBilgisi = MediaQuery.of(context);
     final double ekranYuksekligi = ekranBilgisi.size.height;
     final double ekranGenisligi = ekranBilgisi.size.width;
+
+    /*final imageUrl = await imageLink.getDownloadUrl();
+    Image.network(imageUrl.toString());*/
 
     return Scaffold(
       backgroundColor: Colors.deepPurple,
@@ -49,6 +53,7 @@ class _sayfa1State extends State<sayfa1> {
                       child: Yazi("My Profile", ekranGenisligi/25),
                       onPressed: (){
                         print("Profile Gidildi!");
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => myProfile()));
                       },
                     ),
                   ),
@@ -87,6 +92,7 @@ class _sayfa1State extends State<sayfa1> {
                 ),
               ],
             ),
+
             Padding(
               padding: EdgeInsets.all(ekranYuksekligi/100),
               child: Column(
@@ -97,14 +103,19 @@ class _sayfa1State extends State<sayfa1> {
                     spacing: 8.0,               //gap between adjacent chips
                     runSpacing: 4.0,            //gap between lines
                     children: [
-                      urun(8.0,"resimler/redbull.jpg", "Redbull Energy Drink"),
-                      urun(25.0,"resimler/colgate.jpg", "Colgate"),
-                      urun(3.75,"resimler/etigong.jpg", "Eti Gong"),
-                      urun(9.50,"resimler/monster.jpg", "Monster Energy Drink"),
-                      urun(7.50,"resimler/obsesso.jpg", "Obsesso Coffee"),
+                      // I'd rather use Image.network instead of using firestorage since we will be implementing web scraping scripts
+                      // in the future in order to get images and prices.
+                      // Image.network("https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/34014356/34014356-ce0d80.jpg"),
+                      urun(8.0,"redbull.jpg", "Redbull Energy Drink","carrefour.png"),
+                      urun(25.0,"colgate.jpg", "Colgate","carrefour.png"),
+                      urun(3.75,"etigong.jpg", "Eti Gong","migros.png"),
+                      urun(10.25,"monster.jpg", "Monster Energy Drink","migros.png"),
+                      urun(9.50,"monster.jpg", "Monster Energy Drink","carrefour.png"),
+                      urun(7.50,"obsesso.jpg", "Obsesso Coffee","carrefour.png"),
+                      urun(8.50,"obsesso.jpg", "Obsesso Coffee","migros.png"),
 
 
-                   ],
+                    ],
                   ),
                 ],
               ),
@@ -113,8 +124,21 @@ class _sayfa1State extends State<sayfa1> {
         ),
       ),
     );
+
   }
 }
+
+
+Future<Widget> _getImage(BuildContext context, String imageName) async{
+  Image image ;
+  final value = await FireStorageService.loadImage(context, imageName);
+  image =Image.network(
+    value.toString(),
+    fit: BoxFit.fill,
+  );
+  return image;
+}
+
 class Yazi extends StatelessWidget {
   String? icerik;
   double? yaziBoyut;
@@ -126,5 +150,12 @@ class Yazi extends StatelessWidget {
     return Text(
       icerik!,
       style: TextStyle(fontSize: yaziBoyut),);
+  }
+}
+
+class FireStorageService extends ChangeNotifier{
+  FireStorageService();
+  static Future<String> loadImage(BuildContext context, String image) async{
+    return await FirebaseStorage.instance.ref().child(image).getDownloadURL();
   }
 }

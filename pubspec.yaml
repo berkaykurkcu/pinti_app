@@ -30,10 +30,12 @@ dependencies:
   flare_flutter: ^3.0.1
   flutter:
     sdk: flutter
+  firebase_core: "^1.3.0"
   firebase_auth: ^1.4.1
   rive:
-
-
+  firebase_storage: "^9.0.0"
+  file_picker:
+  flutter_cart: ^0.0.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

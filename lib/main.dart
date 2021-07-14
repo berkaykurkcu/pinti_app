@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinti_app/splashPage.dart';
 import 'authentication.dart';
 
+
 /*Future <void> asyncInit() async{
   await Firebase.initializeApp();
 }*/
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
